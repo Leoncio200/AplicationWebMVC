@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AplicationWebMVC</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <link rel="stylesheet" href="~/AdminLTE/plugins/fontawesome-free/css/all.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AdminLTE/dist/css/adminlte.min.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+    
+        <partial name="_navbar" />
+    
+    </header>
+
+    <partial name="_sidebar" />
+
+    <div class="content-wrapper pl-1 pr-1">
+        <div class="container_fluid">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    
+    <partial name="_CSidebar" />
+
+    <partial name="_footer" />
+
+    <script src="~/AdminLTE/plugins/jquery/jquery.min.js"></script>
+    <script src="~/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AdminLTE/dist/js/adminlte.min.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
