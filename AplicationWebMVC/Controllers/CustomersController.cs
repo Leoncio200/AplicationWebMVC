@@ -18,8 +18,8 @@ namespace ASP.Controllers
         // GET: CustomersController
         public ActionResult Index()
         {
-            IEnumerable<Customers> listaCostumer = _context.customers;
-            return View(listaCostumer);
+            IEnumerable<Customers> listaCostumer = _context.customers.Take(15).ToList();
+            return View("Index",listaCostumer);
         }
 
         // GET: CustomersController/Details/5
@@ -31,7 +31,7 @@ namespace ASP.Controllers
         // GET: CustomersController/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: CustomersController/Create
@@ -56,7 +56,7 @@ namespace ASP.Controllers
                 return NotFound();
             }
             var cust = _context.customers.Find(id);
-            return View();
+            return View("Edit", cust);
         }
 
         // POST: CustomersController/Edit/5
@@ -76,7 +76,8 @@ namespace ASP.Controllers
         // GET: CustomersController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var customer = _context.customers.Find(id);
+            return View("Delete", customer);
         }
 
         // POST: CustomersController/Delete/5
@@ -84,13 +85,18 @@ namespace ASP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
+            var reg = _context.customers.Find(id);
+            if (reg == null)
             {
-                return RedirectToAction(nameof(Index));
+                TempData["error"] = "Algo salió mal... inténtalo de nuevo.";
+                return RedirectToAction(nameof(Delete));
             }
-            catch
+            else
             {
-                return View();
+
+                _context.customers.Remove(reg);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index), new { id = "" });
             }
         }
     }
