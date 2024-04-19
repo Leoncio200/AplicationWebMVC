@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace WebIbero.Models
+namespace App.Models
 {
     public class Product_Categories
     {
