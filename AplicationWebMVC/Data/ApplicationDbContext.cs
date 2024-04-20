@@ -23,10 +23,10 @@ namespace ASP.Data
             //public DbSet<Locations> locations { get; set; }
             //public DbSet<Order_Items> order_items { get; set; }
             //public DbSet<Orders> orders { get; set; }
-            //public DbSet<Product_Categories> product_categories { get; set; }
-            //public DbSet<Products> products { get; set; }
+            public DbSet<Product_Categories> product_categories { get; set; }
+            public DbSet<Products> products { get; set; }
             public DbSet<Regions> regions { get; set; }
-            //public DbSet<Warehouses> warehouses { get; set; }
+            public DbSet<Warehouses> warehouses { get; set; }
             //public DbSet<SqlProductosCategoria> sqlproductoscategoria { get; set; }
 
             [DbFunction(Schema = "dbo")]
@@ -34,6 +34,11 @@ namespace ASP.Data
             {
                 throw new Exception();
             }
+
+            /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                modelBuilder.Entity<Inventories>().HasNoKey();
+            }*/
         }
     }
 

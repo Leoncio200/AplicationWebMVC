@@ -1,0 +1,65 @@
+﻿@model IEnumerable<App.Models.Products>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT_NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DESCRIPTION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.STANDARD_COST)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LIST_PRICE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CATEGORY_ID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PRODUCT_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PRODUCT_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPTION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.STANDARD_COST)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LIST_PRICE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CATEGORY_ID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Create", new {  id=item.PRODUCT_ID }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.PRODUCT_ID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
